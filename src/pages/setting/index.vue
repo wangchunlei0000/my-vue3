@@ -3,13 +3,15 @@
     <section class="left-section">
       <div class="title">有点is</div>
       <div class="link-list">
-        <router-link class="link-nav" to="/setting/account"> 账号设置 </router-link>
-        <router-link class="link-nav" to="/setting/list/90"> 列表设置 </router-link>
+        <router-link class="link-nav" to="/setting/account/90"> 账号设置 </router-link>
+        <router-link class="link-nav" to="/setting/list"> 列表设置 </router-link>
         <router-link class="link-nav" to="/setting/message"> 消息和邮件设置 </router-link>
       </div>
     </section>
     <section class="right-section">
-      <router-view/>
+      <router-view />
+      <router-view name="test1" />
+      <router-view name="test2" />
     </section>
   </div>
 </template>

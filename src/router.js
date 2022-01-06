@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Setting from '@/pages/setting'
 import Account from '@/pages/account'
+import List from '@/pages/list'
+import Message from '@/pages/message'
 
 // 路由配置
 const routes = [
@@ -11,18 +13,26 @@ const routes = [
   {
     path: '/setting',
     component: Setting,
+    // 嵌套路由
     children: [
       {
-        path: 'account',
+        path: 'account/:id',
+        name: 'account',
         component: Account
       },
       {
-        path: 'list/:id',
-        component: Account
+        path: 'list',
+        name: 'list',
+        components: {
+          default: List,
+          test1: Account,
+          test2: Message
+        }
       },
       {
         path: 'message',
-        component: Account
+        name: 'message',
+        component: Message
       }
     ]
   },
