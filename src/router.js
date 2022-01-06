@@ -73,6 +73,10 @@ router.beforeEach((to, from, next ) => {
   //  else if(to.path === '/meiyouzhegepath') {
   //   next({ name: 'aa' })
   // }
+  // if(to.path === '/setting/list') {
+  //   console.log('-----')
+  //   return { path: '/setting/account' }
+  // }
   // return false
 })
 

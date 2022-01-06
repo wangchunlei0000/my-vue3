@@ -328,3 +328,26 @@ const routes = [
 ```
 
 `/search?param=vue3` 将传递 `{ query: 'vue3' }` 作为 `props` 给 `SearchUser` 组件
+
+---
+
+## 前置守卫
+
+```javascript
+const router = createRouter({...})
+
+router.beforeEach((to, from, next) => {
+  // to 目标路由
+  // from 当前路由
+  // next 下一步动作
+  // if(to) {
+  //   next()
+  // } else {
+  //   next({ name: '404' })
+  // }
+  // return false // 取消导航
+  // if(to) {
+  //   return { path:'/test' }
+  // }
+})
+```
