@@ -61,3 +61,32 @@ const routes = [
 
 如果需要对组件中参数变化做出响应的话，可以 watch `$route` 做出对应动作
 
+**路径参数的使用**
+
+参数自定义正则
+
+```javascript
+// 仅匹配数字
+{ path: '/:userId(\\d+)' }
+```
+
+可重复的参数
+
+```javascript
+// 能匹配 /one, /one/two ...
+{ path: '/:username+' },
+// 能匹配 /, /one, /one/two ...
+{ path: '/:username*' }
+```
+
+这提供一个 `参数数组` 而不是字符串，并且在使用命名路由时也要传递数组
+```javascript
+router.resolve({name: 'username', params: { username: [] } })
+```
+
+可选参数
+
+```javascript
+// 使用 ？ 修饰符可将参数标记为可选
+{ path: '/users/:username?' }
+```
