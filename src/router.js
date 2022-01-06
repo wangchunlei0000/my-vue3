@@ -61,5 +61,14 @@ const router = createRouter({
   routes,
 })
 
+router.beforeEach((to, from ) => {
+  console.log(to, from)
+  if(to.path === '/setting/list') {
+    console.log('-----')
+    return {path:'/setting/account'}
+  }
+  // return false
+})
+
 
 export default router
