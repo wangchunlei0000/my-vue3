@@ -1,18 +1,19 @@
 <template>
   <div class='wrapper'>
-    message==
+    message== {{ testProps }} === 
   </div>
 </template>
 
 <script>
 import { onMounted } from 'vue'
-import { useRoute } from 'vue-router'
 
 export default {
+  props: {
+    testProps: null,
+  },
   setup() {
-    const route = useRoute()
     onMounted(() => {
-      console.log('--/list/:id 动态路由参数 会放到route.params 中----', route.params.id)
+      console.log('--/message 动态路由参数 会放到route.params 中----')
     })
   }
 }

@@ -11,7 +11,7 @@ const routes = [
     redirect: '/setting',
   },
   {
-    path: '/setting/:id',
+    path: '/setting',
     component: Setting,
     redirect: { name: 'message' },
     // 嵌套路由
@@ -21,6 +21,7 @@ const routes = [
         name: 'account',
         component: Account,
         alias: ':id',
+        props: true
       },
       {
         path: 'list',
@@ -29,6 +30,11 @@ const routes = [
           default: List,
           test1: Account,
           test2: Message
+        },
+        props: {
+          default: true,
+          test1: true,
+          test2: { testProps: '666' }
         }
       },
       {

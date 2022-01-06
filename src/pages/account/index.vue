@@ -1,6 +1,6 @@
 <template>
   <div class='wrapper'>
-    account
+    account {{ id }} ---- {{ route.params.id }}
   </div>
 </template>
 
@@ -9,11 +9,15 @@ import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
 export default {
+  props: {
+    id: Number
+  },
   setup() {
     const route = useRoute()
     onMounted(() => {
       console.log('--/list/:id 动态路由参数 会放到route.params 中----', route.params.id)
     })
+    return { route }
   }
 }
 

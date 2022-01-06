@@ -267,3 +267,64 @@ const routes = [
 ```
 
 上面的配置，会在用户访问别名 （/alias-setting）时匹配 `/setting` 路由到 `Setting` 组件
+
+---
+
+## 路由组件传参
+
+配置路由的 props 可以将 `$route.params` 在组件中以 `props` 接收
+
+```html
+<!-- setting.vue 组件 -->
+<div> {{ settingId }} </div>
+...
+props: {
+  // 接收路由的路径参数 settingId => route.params.settingId
+  settingId: Number
+}
+```
+
+```javascript
+const routes = [
+  {
+    path: '/setting/:settingId',
+    component: Setting,
+    props: true
+  }
+]
+```
+
+```javascript
+// 命名视图
+const routes = [
+  {
+    path: '/setting/:settingId',
+    components: { default: Setting, test: Test},
+    props: { default: true, test: false }
+  }
+]
+```
+
+```javascript
+// 对象模式设置 props
+// 将 { propParam1: 'heihei' } 原样设置为组件 props
+const routes = [
+  {
+    path: '/setting/:settingId',
+    component: Setting,
+    props: { propParam1: 'heihei' }
+  }
+]
+```
+
+```javascript
+const routes = [
+  {
+    path: '/search',
+    component: SearchUser,
+    props: route => ({ query: route.query.q })
+  }
+]
+```
+
+`/search?param=vue3` 将传递 `{ query: 'vue3' }` 作为 `props` 给 `SearchUser` 组件
