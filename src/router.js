@@ -78,6 +78,7 @@ router.beforeEach((to, from, next ) => {
   //   return { path: '/setting/account' }
   // }
   // return false
+  next()
 })
 
 
