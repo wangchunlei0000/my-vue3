@@ -230,3 +230,40 @@ router.push({ name: 'user', params: { username: 'wangcl' } })
   ]
 },
 ```
+
+---
+
+## 重定向和别名
+
+```javascript
+const routes = [
+  {
+    path: '/test',
+    // 从 / 重定向到 /setting
+    redirect: '/setting',
+    // 重定向的目标可以是 命名路由
+    // redirect: { name: '/setting' }
+    // 也可以是函数
+    // redirect: to => {
+    //   // to: 是目标路由 也就是 /test
+    //   return { path: '/setting', query: { param1: to.params.param1 } }
+    // }
+  }
+]
+```
+
+### **别名**
+
+给路由设置别名
+
+```javascript
+const routes = [
+  {
+    path: '/setting',
+    component: Setting,
+    alias: '/alias-setting'
+  }
+]
+```
+
+上面的配置，会在用户访问别名 （/alias-setting）时匹配 `/setting` 路由到 `Setting` 组件

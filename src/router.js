@@ -11,14 +11,16 @@ const routes = [
     redirect: '/setting',
   },
   {
-    path: '/setting',
+    path: '/setting/:id',
     component: Setting,
+    redirect: { name: 'message' },
     // 嵌套路由
     children: [
       {
         path: 'account/:id',
         name: 'account',
-        component: Account
+        component: Account,
+        alias: ':id',
       },
       {
         path: 'list',
@@ -36,6 +38,13 @@ const routes = [
       }
     ]
   },
+  {
+    path: '/account',
+    name: 'aa',
+    alias: '/testaa',
+    component: Account,
+    redirect: '/setting'
+  }
 ]
 
 const webHistory = createWebHistory('/wangcl')
