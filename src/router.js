@@ -61,12 +61,18 @@ const router = createRouter({
   routes,
 })
 
-router.beforeEach((to, from ) => {
-  console.log(to, from)
-  if(to.path === '/setting/list') {
-    console.log('-----')
-    return {path:'/setting/account'}
-  }
+// 前置守卫
+router.beforeEach((to, from, next ) => {
+  console.log(to, from, next)
+  // if(to.path === '/setting/list') {
+  //   console.log('-----')
+  //   next({ name: 'account' })
+  // } else {
+  //   next()
+  // }
+  //  else if(to.path === '/meiyouzhegepath') {
+  //   next({ name: 'aa' })
+  // }
   // return false
 })
 
