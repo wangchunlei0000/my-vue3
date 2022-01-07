@@ -1,7 +1,5 @@
 <template>
-  <div class='wrapper'>
-    account {{ id }} ---- {{ route.params.id }}
-  </div>
+  <div class="wrapper">account {{ id }} ---- {{ route.params.id }}</div>
 </template>
 
 <script>
@@ -10,7 +8,7 @@ import { useRoute } from 'vue-router'
 
 export default {
   props: {
-    id: Number
+    id: Number,
   },
   setup() {
     const route = useRoute()
@@ -18,12 +16,12 @@ export default {
       console.log('--/list/:id 动态路由参数 会放到route.params 中----', route.params.id)
     })
     return { route }
-  }
+  },
 }
-
 </script>
 
 <style lang="less" scoped>
 .wrapper {
+  color: black;
 }
 </style>

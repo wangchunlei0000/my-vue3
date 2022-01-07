@@ -3,16 +3,38 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "start": "npm run serve",
+    "serve": "node check-env.js && cross-env NODE_ENV=development vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "eslint --fix --quiet"
+    ],
+    "*.{less,vue}": [
+      "stylelint --fix --allow-empty-input"
+    ]
+  },
   "dependencies": {
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "cross-env": "^7.0.3",
+    "css-minimizer-webpack-plugin": "^1.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^4.3.8",
     "less": "^3.11.1",
     "less-loader": "^4.1.0",
+    "lint-staged": "^12.1.5",
+    "prettier": "^2.2.1",
+    "stylelint": "^14.2.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-recess-order": "^3.0.0",
+    "stylelint-config-standard": "^24.0.0",
     "vue": "^3.0.0",
-    "vue-router": "^4.0.8"
+    "vue-router": "^4.0.8",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -20,7 +42,7 @@
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
+    "eslint": "^7.24.0",
     "eslint-plugin-vue": "^7.0.0",
     "install": "^0.13.0",
     "npm": "^8.3.0",

@@ -1,0 +1,31 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file 表示是最顶层的配置文件，发现设为true时，才会停止查找.editorconfig文件
+root = true
+
+# Unix-style newlines with a newline ending every file 对于所有的文件  始终在文件末尾插入一个新行
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+# Matches multiple files with brace expansion notation
+# Set default charset  对于所有的文件，设置文件字符集为utf-8
+[*]
+charset = utf-8
+
+# 2 space indentation 控制src文件下的js,jsx,ts,tsx,vue文件类型的缩进大小
+# [src/**.{js,jsx,ts,tsx,vue}]
+# indent_style = space
+# indent_size = 2
+
+[*]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true  # 自动删除行尾空格
+
+# md文件保持行尾3空格的换行模式正常运行
+[*.md]
+insert_final_newline = false
+trim_trailing_whitespace = false
+
+

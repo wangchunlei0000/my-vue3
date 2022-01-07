@@ -331,7 +331,9 @@ const routes = [
 
 ---
 
-## 前置守卫
+## 全局前置守卫
+
+导航触发时执行
 
 ```javascript
 const router = createRouter({...})
@@ -339,7 +341,7 @@ const router = createRouter({...})
 router.beforeEach((to, from, next) => {
   // to 目标路由
   // from 当前路由
-  // next 下一步动作
+  // next 下一步动作 一旦使用必须 【确保】 【严格调用一次】
   // if(to) {
   //   next()
   // } else {
@@ -350,4 +352,74 @@ router.beforeEach((to, from, next) => {
   //   return { path:'/test' }
   // }
 })
+```
+
+## 全局解析守卫
+
+每次导航时触发，在所有组件内守卫和异步路由组件被解析后，解析守卫被正确调用
+`router.beforeResolved` 是【获取数据】或任何其他操作的【理想位置】
+
+```javascript
+router.beforeResolved(async to => {
+  if(to.meta.test) {
+    try {
+      ...
+    } catch (e) {
+      if (e instanceof NotAllowedError) {
+        return fasle
+      } else {
+        throw e
+      }
+    }
+  }
+})
+```
+
+## 全局后置钩子
+
+后置钩子不能改变导航，但是可以改变页面标题...辅助的事情
+```javascript
+router.afterEach((to, from, failure) => {
+  ...
+})
+```
+
+## 路由独享守卫
+
+直接在路由配置上定义，只在进入路由时触发【从不同路由导航时触发】
+```javascript
+function func1(to) {}
+function func2(to) {}
+{
+  path: '/setting',
+  component: Setting,
+  beforeEnter: (to, from) => {
+    return false
+  },
+  beforeEnter: [func1, func2]
+}
+```
+
+## 组件内的守卫
+
+可用的配置 API
+- beforeRouteEnter
+- beforeRouteUpdate
+- beforeRouteLeave
+
+```javascript
+data() {return {}},
+...
+beforeRouteEnter(to, from) {
+  // 在渲染组件的【对应路由】被验证前调用
+  // 不能访问 this
+},
+beforeRouteUpdate(to, from) {
+  // 当前路由改变，【改组件被复用时】调用
+  // 可以访问 this
+},
+beforeRouteLeave(to, from) {
+  // 在导航离开渲染组件的【对应路由】时调用
+  // 可以访问 this
+}
 ```

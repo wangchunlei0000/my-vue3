@@ -1,5 +1,5 @@
 <template>
-  <div class='setting-wrapper'>
+  <div class="setting-wrapper">
     <section class="left-section">
       <div class="title">有点is</div>
       <div class="link-list">
@@ -19,9 +19,11 @@
 <script>
 export default {
   setup() {
-  }
+    return {
+      a: 1,
+    }
+  },
 }
-
 </script>
 
 <style lang="less" scoped>

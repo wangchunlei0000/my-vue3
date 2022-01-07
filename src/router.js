@@ -21,7 +21,7 @@ const routes = [
         name: 'account',
         component: Account,
         alias: ':id',
-        props: true
+        props: true,
       },
       {
         path: 'list',
@@ -29,28 +29,28 @@ const routes = [
         components: {
           default: List,
           test1: Account,
-          test2: Message
+          test2: Message,
         },
         props: {
           default: true,
           test1: true,
-          test2: { testProps: '666' }
-        }
+          test2: { testProps: '666' },
+        },
       },
       {
         path: 'message',
         name: 'message',
-        component: Message
-      }
-    ]
+        component: Message,
+      },
+    ],
   },
   {
     path: '/account',
     name: 'aa',
     alias: '/testaa',
     component: Account,
-    redirect: '/setting'
-  }
+    redirect: '/setting',
+  },
 ]
 
 const webHistory = createWebHistory('/wangcl')
@@ -62,24 +62,14 @@ const router = createRouter({
 })
 
 // 前置守卫
-router.beforeEach((to, from, next ) => {
-  console.log(to, from, next)
-  // if(to.path === '/setting/list') {
-  //   console.log('-----')
-  //   next({ name: 'account' })
-  // } else {
-  //   next()
-  // }
-  //  else if(to.path === '/meiyouzhegepath') {
-  //   next({ name: 'aa' })
-  // }
-  // if(to.path === '/setting/list') {
-  //   console.log('-----')
-  //   return { path: '/setting/account' }
-  // }
-  // return false
-  next()
+router.beforeEach((to, from, next) => {
+  console.log('beforeEach --- 前置守卫', to, from, next)
+  if (to.path === '/setting/list') {
+    console.log('---/setting/list 被前置守卫处理了--')
+    next()
+  } else {
+    next()
+  }
 })
-
 
 export default router
