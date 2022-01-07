@@ -423,3 +423,34 @@ beforeRouteLeave(to, from) {
   // 可以访问 this
 }
 ```
+
+---
+
+## 路由元信息 meta
+
+将任意信息附加到路由上，meta 可以在【路由地址】和【导航守卫】上访问到
+
+```javascript
+{
+  path: '/setting',
+  component: Setting,
+  children:[
+    {
+      path: '/test1',
+      component: Test1,
+      meta: { needLogin: true }
+    }
+  ]
+}
+```
+
+如何访问：`$route.meta` or `导航守卫中的【路由对象】的 $route.matched 数组`
+
+```javascript
+router.beforeEach((to, from) => {
+  // to.matched.some(i => i.meta.needLogin)
+  if(to.meta.needLogin) {
+    return { path: '/login' }
+  }
+})
+```
