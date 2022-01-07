@@ -454,3 +454,37 @@ router.beforeEach((to, from) => {
   }
 })
 ```
+
+## 组合式 API
+
+`setup` 没有访问 `this` so
+
+### **$route $router**
+
+```javascript
+import { useRoute, useRouter } from 'vue-router'
+
+export default {
+  setup() {
+    const router = useRouter()
+    const route = useRoute()
+  }
+}
+```
+
+### **组件内导航守卫**
+
+```javascript
+import { onBeforeRouteLeave, onBeforeRouteUpdate } from 'vue-router'
+
+export default {
+  setup() {
+    onBeforeRouteLeave((to, from) => {
+      ...// 不能访问 this
+    })
+    onBeforeRouteUpdate((to, from) => {
+      ...// 不能访问 this
+    })
+  }
+}
+```
