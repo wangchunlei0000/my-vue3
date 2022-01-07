@@ -488,3 +488,52 @@ export default {
   }
 }
 ```
+### **useLink**
+
+Vue Router 将 RouterLink 的内部行为作为一个组合式 API 函数公开。它提供了与 v-slot API 相同的访问属性：
+
+```javascript
+import { RouterLink, useLink } from 'vue-router'
+
+export default {
+  name: 'AppLink',
+
+  props: {
+    // 如果使用 TypeScript，请添加 @ts-ignore
+    ...RouterLink.props,
+    inactiveClass: String,
+  },
+
+  setup(props) {
+    const { route, href, isActive, isExactActive, navigate } = useLink(props)
+
+    const isExternalLink = computed(
+      () => typeof props.to === 'string' && props.to.startsWith('http')
+    )
+
+    return { isExternalLink, href, navigate, isActive }
+  },
+}
+```
+
+## others
+
+### 滚动行为
+
+```javascript
+createRouter({
+  history: createWebHistory(),
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    return {
+      top: 0
+    }
+  }
+})
+```
+
+## 路由懒加载
+
+动态导入路由
+
+webpackChunkName
